@@ -1,11 +1,13 @@
 <?php
 use App\Http\Controllers\Backend\DatatableController;
 
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Livewire\Backend\Setting\CompanyInfo;
 use App\Http\Livewire\Backend\Setting\Currency;
 use App\Http\Livewire\Backend\Setting\Vat;
 use App\Http\Livewire\Backend\Setting\Warehouse;
 use App\Http\Livewire\Backend\Setting\PaymentMethod;
+use App\Http\Livewire\Backend\Setting\Slider;
 use App\Http\Livewire\Backend\Product\Unit;
 use App\Http\Livewire\Backend\Product\Brand;
 use App\Http\Livewire\Backend\Product\Category;
@@ -35,10 +37,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Start Frontend Route
+Route::get('/', [HomeController::class, 'index'])->name('home');
+// End Frontend Route
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -76,6 +77,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         });
 
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+            Route::get('slider', Slider::class)->name('slider');
             Route::get('companyinfo', CompanyInfo::class)->name('companyinfo');
             Route::get('currency', Currency::class)->name('currency');
             Route::get('vat', Vat::class)->name('vat');
@@ -98,6 +100,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::group(['prefix' => 'data', 'as' => 'data.'], function () {
         // Route::get('branch_table', [DatatableController::class, 'BranchTable'])->name('branch_table');
+
+        Route::get('slider_table', [DatatableController::class, 'SliderTable'])->name('slider_table');
         Route::get('currency_table', [DatatableController::class, 'CurrencyTable'])->name('currency_table');
         Route::get('vat_table', [DatatableController::class, 'VatTable'])->name('vat_table');
         Route::get('warehouse_table', [DatatableController::class, 'WarehouseTable'])->name('warehouse_table');
@@ -114,11 +118,10 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::get('staff_table', [DatatableController::class, 'StaffTable'])->name('staff_table');
         Route::get('purchase_list', [DatatableController::class, 'PurchaseListTable'])->name('purchase_list');
         Route::get('sale_list', [DatatableController::class, 'SaleListTable'])->name('sale_list');
-        
+
         // Route::get('delivery_method_table', [DatatableController::class, 'DeliveryMethodTable'])->name('delivery_method_table');
         // Route::get('warehouse_table', [DatatableController::class, 'WarehouseTable'])->name('warehouse_table');
         // Route::get('unit_table', [DatatableController::class, 'UnitTable'])->name('unit_table');
-        // Route::get('slider_table', [DatatableController::class, 'SliderTable'])->name('slider_table');
         // Route::get('invoiceSetting_table', [DatatableController::class, 'InvoiceSettingTable'])->name('invoiceSetting_table');
         // Route::get('shipping_charge', [DatatableController::class, 'ShippingChargeTable'])->name('shipping_charge');
         // Route::get('coupon_table', [DatatableController::class, 'CouponTable'])->name('coupon_table');

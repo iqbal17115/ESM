@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Backend\Setting\Currency;
 use App\Models\Backend\Setting\Vat;
 use App\Models\Backend\Setting\Warehouse;
+use App\Models\Backend\Setting\Slider;
 use App\Models\Backend\Product\Unit;
 use App\Models\Backend\Product\Brand;
 use App\Models\Backend\Product\Category;
@@ -423,6 +424,34 @@ class DatatableController extends Controller
                 return $html;
             })
             ->rawColumns(['is_active', 'action'])
+            ->toJSON();
+    }
+    public function SliderTable()
+    {
+        $Query = Slider::query()->orderBy('position', 'asc');
+
+        $this->i = 1;
+
+        return Datatables::of($Query)
+            ->addColumn('id', function ($data) {
+                return $this->i++;
+            })
+            ->addColumn('is_active', function ($data) {
+                return $data->is_active == 1 ? 'Active' : 'Inactive';
+            })
+            ->addColumn('image', function ($data) {
+                $url = asset('storage/photo/'.$data->image);
+
+                return '<img src="'.$url.'" style="height:92px; weight:138px;" alt="Image" class="img-fluid mx-auto d-block"/>';
+            })
+            ->addColumn('action', function ($data) {
+                $html = '';
+                $html .= '<button class="btn btn-primary btn-sm" onclick="callEdit('.$data->id.')"><i class="bx bx-edit font-size-18"></i></button>';
+                $html .= '<button class="btn btn-danger btn-sm" onclick="callDelete('.$data->id.')"><i class="bx bx-window-close font-size-18"></i></button>';
+
+                return $html;
+            })
+            ->rawColumns(['category_id', 'image', 'action'])
             ->toJSON();
     }
 }

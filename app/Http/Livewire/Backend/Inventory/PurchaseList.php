@@ -6,7 +6,6 @@ use App\Models\Backend\Inventory\PurchaseInvoice;
 use App\Models\Backend\Inventory\PurchaseInvoiceDetail;
 use App\Models\Backend\Inventory\PurchasePayment;
 use Livewire\Component;
-
 class PurchaseList extends Component
 {
     public $DeleteProductId;

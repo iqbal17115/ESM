@@ -20,6 +20,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                     <li><a href="{{route('setting.companyinfo')}}">Company Profile</a></li>
+                    <li><a href="{{route('setting.slider')}}">Slider</a></li>
                     <li><a href="{{route('setting.currency')}}">Currency</a></li>
                     <li><a href="{{route('setting.vat')}}">Vat</a></li>
                     <li><a href="{{route('setting.warehouse')}}">Warehouse</a></li>

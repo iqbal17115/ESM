@@ -20,6 +20,10 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class)->where('is_default','!=', 1);
     }
+    public function ProductImageLast()
+    {
+        return $this->hasOne(ProductImage::class)->orderBy('id', 'desc');
+    }
     public function ProductImageFirst()
     {
         return $this->hasOne(ProductImage::class)->whereIsDefault(1);
