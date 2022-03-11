@@ -13,12 +13,41 @@ use App\Models\Backend\Product\SubSubCategory;
 use App\Models\Backend\Product\Product;
 use App\Models\Backend\Contact\Contact;
 use App\Models\Backend\Contact\ContactCategory;
+use App\Models\Backend\Setting\PaymentMethod;
+use App\Models\Backend\Inventory\PurchaseInvoice;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DatatableController extends Controller
 {
+    public function PurchaseListTable()
+    {
+        $Query = PurchaseInvoice::with('Contact:id,first_name')->orderBy('id', 'desc');
+
+        $this->i = 1;
+
+        return Datatables::of($Query)
+            ->addColumn('id', function ($data) {
+                return $this->i++;
+            })
+            // ->addColumn('contact_id', function ($data) {
+            //     return $data->Contact ? $data->Contact->first_name.' '.$data->Contact->last_name : '';
+            // })
+            ->addColumn('paid_amount', function ($data) {
+                return $data->PurchasePayment ? $data->PurchasePayment->sum('total_amount') : '';
+            })
+            ->addColumn('due_amount', function ($data) {
+                return $data->payable_amount - $data->PurchasePayment->sum('total_amount');
+            })
+            ->addColumn('action', function ($data) {
+                return '<a class="btn btn-info btn-sm" href="'.route('inventory.purchase-invoice', ['id' => $data->id]).'" data-id="'.$data->id.'"><i class="fas fa-eye font-size-18"></i></a>
+                    <a class="btn btn-primary btn-sm" href="'.route('inventory.purchase', ['id' => $data->id]).'" data-id="'.$data->id.'"><i class="bx bx-edit font-size-18"></i></a>
+                    <button class="btn btn-danger btn-sm" onclick="callDelete('.$data->id.')"><i class="bx bx-window-close font-size-18"></i></button>';
+            })
+            ->rawColumns(['id', 'contact_id', 'action'])
+            ->toJSON();
+    }
     public function ContactCategoryTable()
     {
         $Query = ContactCategory::query()->orderBy('id', 'desc');
@@ -276,6 +305,29 @@ class DatatableController extends Controller
                 return $html;
             })
             ->rawColumns(['action'])
+            ->toJSON();
+    }
+    public function paymentMethodTable()
+    {
+        $Query = PaymentMethod::query()->orderBy('id', 'desc');
+
+        $this->i = 1;
+
+        return Datatables::of($Query)
+            ->addColumn('id', function ($data) {
+                return $this->i++;
+            })
+            ->addColumn('is_active', function ($data) {
+                return $data->is_active == 1 ? 'Active' : 'Inactive';
+            })
+            ->addColumn('action', function ($data) {
+                $html = '';
+                $html .= '<button class="btn btn-primary btn-sm" onclick="callEdit('.$data->id.')"><i class="bx bx-edit font-size-18"></i></button>';
+                $html .= '<button class="btn btn-danger btn-sm" onclick="callDelete('.$data->id.')"><i class="bx bx-window-close font-size-18"></i></button>';
+
+                return $html;
+            })
+            ->rawColumns(['is_active', 'action'])
             ->toJSON();
     }
     public function WarehouseTable()

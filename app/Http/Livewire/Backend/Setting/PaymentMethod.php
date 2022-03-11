@@ -53,7 +53,7 @@ class PaymentMethod extends Component
         $Query->opening_balance             = $this->opening_balance;
         $Query->is_active       = $this->is_active;
         $Query->created_by                = Auth::user()->id;
-        $Query->branch_id              = Auth::user()->branch_id;
+        $Query->branch_id              = 1;
         $Query->save();
         $this->reset();
         $this->PaymentMethodModal();

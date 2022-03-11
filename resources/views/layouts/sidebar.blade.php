@@ -59,6 +59,20 @@
                     </ul>
                 </li>
                 <!-- End Contact -->
+
+                <!-- Start Inventory -->
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-list-ul"></i>
+                        <span>Inventory</span>
+                    </a>
+
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('inventory.purchase')}}">Purchase</a></li>
+                        <li><a href="{{route('inventory.purchase-list')}}">Purchase List</a></li>
+                    </ul>
+                </li>
+                <!-- End Inventory -->
             </ul>
         </div>
         <!-- Sidebar -->

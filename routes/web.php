@@ -17,6 +17,9 @@ use App\Http\Livewire\Backend\Contact\ContactCategory;
 use App\Http\Livewire\Backend\Contact\Customer;
 use App\Http\Livewire\Backend\Contact\Supplier;
 use App\Http\Livewire\Backend\Contact\Staff;
+use App\Http\Livewire\Backend\Inventory\Purchase;
+use App\Http\Livewire\Backend\Inventory\PurchaseInvoice;
+use App\Http\Livewire\Backend\Inventory\PurchaseList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +44,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['role:admin']], function () {
 
     // Route::get('dashboard', Dashboard::class)->name('dashboard');
+
+    Route::group(['prefix' => 'inventory', 'as' => 'inventory.'], function () {
+        Route::get('purchase/{id?}', Purchase::class)->name('purchase');
+        Route::get('purchase-invoice/{id}', PurchaseInvoice::class)->name('purchase-invoice');
+        Route::get('purchase-list', PurchaseList::class)->name('purchase-list');
+
+    });
 
     Route::group(['prefix' => 'contact-info', 'as' => 'contact-info.'], function () {
         Route::get('contact-category', ContactCategory::class)->name('contact-category');
@@ -97,6 +107,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::get('customer_table', [DatatableController::class, 'CustomerTable'])->name('customer_table');
         Route::get('supplier_table', [DatatableController::class, 'SupplierTable'])->name('supplier_table');
         Route::get('staff_table', [DatatableController::class, 'StaffTable'])->name('staff_table');
+        Route::get('purchase_list', [DatatableController::class, 'PurchaseListTable'])->name('purchase_list');
         // Route::get('delivery_method_table', [DatatableController::class, 'DeliveryMethodTable'])->name('delivery_method_table');
         // Route::get('warehouse_table', [DatatableController::class, 'WarehouseTable'])->name('warehouse_table');
         // Route::get('unit_table', [DatatableController::class, 'UnitTable'])->name('unit_table');
