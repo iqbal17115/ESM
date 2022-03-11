@@ -1,0 +1,29 @@
+.page-header{
+    color: #449f81;
+}
+.bottom-hr{
+    width: 50px;
+    border: 5px solid #000b0e;
+    margin-top: 1px;
+}
+#required{
+    color: red;
+}
+.edit-button{
+   background-color: #11324D;
+}
+.delete-button{
+    background-color: #F54748;
+}
+.selcls { 
+    height: 40px; 
+    padding: 3px; 
+    border: solid 1px #517B97; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CAD9E3), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #CAD9E3 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    } 
+
