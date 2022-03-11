@@ -15,12 +15,36 @@ use App\Models\Backend\Contact\Contact;
 use App\Models\Backend\Contact\ContactCategory;
 use App\Models\Backend\Setting\PaymentMethod;
 use App\Models\Backend\Inventory\PurchaseInvoice;
+use App\Models\Backend\Inventory\SaleInvoice;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DatatableController extends Controller
 {
+    public function SaleListTable(Request $request)
+    {
+        $Query = SaleInvoice::orderBy('id', 'desc');
+        $this->i = 1;
+
+        return Datatables::of($Query)
+            ->addColumn('id', function ($data) {
+                return $this->i++;
+            })
+            ->addColumn('paid_amount', function ($data) {
+                return $data->SalePayment ? $data->SalePayment->sum('total_amount') : '';
+            })
+            ->addColumn('due_amount', function ($data) {
+                return $data->payable_amount - $data->SalePayment->sum('total_amount');
+            })
+            ->addColumn('action', function ($data) {
+                return '<a class="btn btn-info btn-sm" href="'.route('inventory.sale-invoice', ['id' => $data->id]).'" data-id="'.$data->id.'"><i class="fas fa-eye font-size-18"></i></a>
+                    <a class="btn btn-primary btn-sm" href="'.route('inventory.sale', ['id' => $data->id]).'" data-id="'.$data->id.'"><i class="bx bx-edit font-size-18"></i></a>
+                    <button class="btn btn-danger btn-sm" onclick="callDelete('.$data->id.')"><i class="bx bx-window-close font-size-18"></i></button>';
+            })
+            ->rawColumns(['contact_id', 'action'])
+            ->toJSON();
+    }
     public function PurchaseListTable()
     {
         $Query = PurchaseInvoice::with('Contact:id,first_name')->orderBy('id', 'desc');

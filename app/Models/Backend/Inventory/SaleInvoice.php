@@ -3,29 +3,31 @@
 namespace App\Models\Backend\Inventory;
 
 use App\Models\Backend\Contact\Contact;
-use App\Models\Backend\Inventory\PurchaseInvoiceDetail;
+use App\Models\Backend\Inventory\SaleInvoiceDetail;
+use App\Models\Backend\Inventory\SalePayment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseInvoice extends Model
+class SaleInvoice extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+
     public function Contact()
     {
         return $this->belongsTo(Contact::class);
     }
 
-    public function PurchaseInvoiceDetail()
+    public function SaleInvoiceDetail()
     {
-        return $this->hasMany(PurchaseInvoiceDetail::class);
+        return $this->hasMany(SaleInvoiceDetail::class);
     }
 
-    public function PurchasePayment()
+    public function SalePayment()
     {
-        return $this->hasMany(PurchasePayment::class);
+        return $this->hasMany(SalePayment::class);
     }
 
 }
