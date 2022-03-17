@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Contact\Contact;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,4 +61,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function Branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+    public function Contact(){
+        return $this->hasOne(Contact::class);
+    }
 }

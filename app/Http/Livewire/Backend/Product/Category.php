@@ -85,16 +85,10 @@ class Category extends Component
         $Query->name = $this->name;
         $Query->description = $this->description;
         if ($this->image1) {
-            if ($Query->image1) {
-                Storage::delete($Query->image1);
-            }
             $path = $this->image1->store('/public/photo');
             $Query->image1 = basename($path);
         }
         if ($this->image2) {
-            if ($Query->image2) {
-                Storage::delete($Query->image2);
-            }
             $path = $this->image2->store('/public/photo');
             $Query->image2 = basename($path);
         }

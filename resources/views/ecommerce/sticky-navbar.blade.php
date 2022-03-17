@@ -1,11 +1,11 @@
 <div class="sticky-navbar">
         <div class="sticky-info">
-            <a href="demo7.html">
+            <a href="{{ route('home') }}">
                 <i class="icon-home"></i>Home
             </a>
         </div>
         <div class="sticky-info">
-            <a href="demo7-shop.html" class="">
+            <a href="{{ route('category') }}" class="">
                 <i class="icon-bars"></i>Categories
             </a>
         </div>
@@ -22,13 +22,15 @@
         <div class="sticky-info">
             <a href="cart.html" class="">
                 <i class="icon-shopping-cart position-relative">
-                    <span class="cart-count badge-circle">3</span>
+                    <span class="cart-count badge-circle">
+                    {{ $cardBadge['data']['number_of_product'] }}
+                    </span>
                 </i>Cart
             </a>
         </div>
     </div>
 
-    <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form"
+    <!-- <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form"
         style="background: #f1f1f1 no-repeat center/cover url(assets/images/newsletter_popup_bg.jpg)">
         <div class="newsletter-popup-content">
             <img src="{{ URL::asset('porto/') }}/assets/images/logo-black.png" alt="Logo" class="logo-newsletter" width="111" height="44">
@@ -59,6 +61,7 @@
         <button title="Close (Esc)" type="button" class="mfp-close">
             ×
         </button>
-    </div><!-- End .newsletter-popup -->
+    </div> -->
+    <!-- End .newsletter-popup -->
 
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>

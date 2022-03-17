@@ -31,7 +31,7 @@ class ProductList extends Component
     public function deleteProduct($id)
     {
         Product::find($id)->delete();
-        ProductInfo::whereProductId($id)->delete();
+        Product::whereProductId($id)->delete();
         ProductImage::whereProductId($id)->delete();
         // ProductProperties::whereProductId($id)->delete();
 

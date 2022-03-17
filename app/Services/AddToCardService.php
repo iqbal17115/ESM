@@ -32,6 +32,7 @@ class AddToCardService extends Controller
 
     public static function addCardStore($productId, $quantity = 1): array
     {
+     
         $sessionId = Session::getId();
         $result = Product::with('ProductImageFirst')->find($productId);
 
@@ -50,6 +51,7 @@ class AddToCardService extends Controller
             $productCard = AddToCardModel::where(['session_id' => $sessionId, 'product_id' => $productId])->with('getProduct')->first();
 
             if ($productCard) {
+     
                 if ($quantity == 0) {
                     $requestQuantity = ($productCard->quantity + $quantity);
                 } elseif ($quantity == 1) {
@@ -104,27 +106,32 @@ class AddToCardService extends Controller
                     }
                 }
             } else {
+           
                 $productCard = new AddToCardModel();
                 $productCard->session_id = $sessionId;
                 $productCard->product_id = $productId;
                 $productCard->data = json_encode($productInfo);
                 $productCard->quantity = $quantity;
-                if (Auth::user()) {
-                    if (Auth::user()->Contact->contact_type == 'Wholesale') {
-                        $productCard->unit_price = $product['wholesale_price'];
-                        $productCard->total_price = ($productCard->quantity * $product['wholesale_price']);
-                    } else {
-                        $productCard->unit_price = $product['special_price'];
-                        $productCard->total_price = ($productCard->quantity * $product['special_price']);
-                    }
-                } else {
-                    $productCard->unit_price = $product['special_price'];
-                    $productCard->total_price = ($productCard->quantity * $product['special_price']);
-                }
+               
+                $productCard->unit_price = $product['special_price'];
+                $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                
+                // if (Auth::user()) {
+                //     if (Auth::user()->Contact->contact_type == 'Wholesale') {
+                //         $productCard->unit_price = $product['wholesale_price'];
+                //         $productCard->total_price = ($productCard->quantity * $product['wholesale_price']);
+                //     } else {
+                //         $productCard->unit_price = $product['special_price'];
+                //         $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                //     }
+                // } else {
+                //     $productCard->unit_price = $product['special_price'];
+                //     $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                // }
             }
 
             $productCard->save();
-
+                
             $card = self::cardTotalProductAndAmount();
             $data['product_card'] = $productCard->toArray();
             $data['total_price'] = $card['data']['total_price'];

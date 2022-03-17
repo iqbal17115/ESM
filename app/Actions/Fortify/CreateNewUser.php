@@ -33,7 +33,20 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]), function (User $user) use ($input) {
-            $user->assignRole('admin');
+            // $user->assignRole('admin');
+                $this->createTeam($user);
+                $user->assignRole('customer');
+                $contact = Contact::whereMobile($user->mobile)->firstOrNew();
+                $contact->business_name = $input['business_name'];
+                $contact->first_name = $user->name;
+                $contact->address = $user->address;
+                $contact->shipping_address = $user->address;
+                $contact->user_id = $user->id;
+                $contact->type = 'Customer';
+                $contact->mobile = $user->mobile;
+                // $contact->district_id = $input['district_id'];
+                $contact->created_by = $user->id;
+                $contact->save();
         });
     }
 }

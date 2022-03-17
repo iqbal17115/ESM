@@ -39,6 +39,22 @@ use Illuminate\Support\Facades\Route;
 */
 // Start Frontend Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('category', [HomeController::class, 'AllCategory'])->name('category');
+Route::get('sub-category/{id}', [HomeController::class, 'AllSubCategory'])->name('sub-category');
+Route::get('shop/{id?}', [HomeController::class, 'Shop'])->name('shop');
+Route::get('product-details/{id?}', [HomeController::class, 'productDetails'])->name('product-details');
+Route::get('/product-search/', [HomeController::class, 'productSearch'])->name('product-search');
+Route::get('/feature-wise/{feature}', [HomeController::class, 'FeatureWise'])->name('feature-wise');
+Route::get('/all-category-wise/{id?}', [HomeController::class, 'allCategoryWise'])->name('all-category-wise');
+Route::get('/search-category-wise/{id?}', [HomeController::class, 'searchByCategory'])->name('search-category-wise');
+Route::get('/search-subCategory-wise/{id?}', [HomeController::class, 'searchBySubCategory'])->name('search-subCategory-wise');
+Route::get('/search-subSubCategory-wise/{id?}', [HomeController::class, 'searchBySubSubCategory'])->name('search-subSubCategory-wise');
+Route::get('/search-brand-wise/{id?}', [HomeController::class, 'searchByBrand'])->name('search-brand-wise');
+Route::post('/ajax/add-to-card-store', [HomeController::class, 'addToCardStore'])->name('ajax-add-to-card-store');
+Route::post('/ajax/add-to-card-quantity-update', [HomeController::class, 'cartProductQuantityUpdate'])->name('ajax-add-to-card-quantity-update');
+Route::post('/ajax/add-to-card-product-delete', [HomeController::class, 'cartProductDelete'])->name('ajax-add-to-card-product-delete');
+Route::get('/confirm-order', [HomeController::class, 'HomePage'])->name('confirm-order');
+Route::post('/confirm-order', [HomeController::class, 'confirmOrder'])->name('confirm-order');
 // End Frontend Route
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

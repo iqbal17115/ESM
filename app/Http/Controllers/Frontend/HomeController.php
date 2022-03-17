@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Backend\Product\Product;
+use App\Models\Backend\Product\Brand;
+use App\Models\Backend\Product\Category;
 use App\Models\Backend\Setting\Slider;
 use App\Models\FrontEnd\AddToCard;
 use App\Services\AddToCardService;
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -34,9 +41,22 @@ class HomeController extends Controller
         $this->addToCard = $addToCard;
         $this->addToCardService = $addToCardService;
     }
+    public function Shop($id){
+        $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereSubCategoryId($id)->whereIsActive(1)->get()->toArray();
+        return view('ecommerce.shop',[
+            'data'=>$data,
+        ]);
+    }
+    public function AllSubCategory($id){
+        
+        return view('ecommerce.sub-categories',[
+            'category'=>Category::find($id)
+        ]);
+    }
+    public function AllCategory(){
+        return view('ecommerce.categories');
+    }
     public function HomePage(){
-        dd("OK");
-
         return redirect()->route('home');
     }
     public function TermsAndCondition(){
@@ -239,13 +259,14 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         // $data['html'] = view('frontend.header-card-popup')->render();
-        $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast'])->whereIsActive(1)->limit(6)->get()->toArray();
-        $data['products_desc'] = $this->product->with(['ProductImageFirst', 'ProductImageLast'])->whereFeatured('New Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
-        $data['best_sellings'] = $this->product->with(['ProductImageFirst', 'ProductImageLast'])->whereFeatured('Best Selling Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
+        $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereIsActive(1)->limit(6)->get()->toArray();
+        $data['new_products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereFeatured('New Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
+        $data['best_sellings'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereFeatured('Best Selling Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
         $sliderImages = Slider::orderBy('position', 'desc')->whereIsActive(1)->get();
         return view('ecommerce.home', [
             'data' => $data,
-            'sliderImages' => $sliderImages
+            'sliderImages' => $sliderImages,
+            'brands' => Brand::orderBy('id', 'DESC')->get()
         ]);
     }
 
@@ -492,8 +513,8 @@ class HomeController extends Controller
     public function productDetails($id = null)
     {
         $ProductDetail = Product::whereId($id)->first();
-        $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast'])->where('id', '!=', $id)->whereCategoryId($ProductDetail->category_id)->whereIsActive(1)->get()->toArray();
-        return view('ecommerce.product-details', [
+        $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category', 'SubCategory'])->where('id', '!=', $id)->whereCategoryId($ProductDetail->category_id)->whereIsActive(1)->get()->toArray();
+        return view('ecommerce.product', [
             'productDetails' => $ProductDetail,
             'data' => $data,
         ]);
@@ -523,7 +544,7 @@ class HomeController extends Controller
             'newProducts' => $newProducts,
             'brands' => $brands,
             'search_type' => $search_type,
-            'search_value' => $search_value,
+            'search_value' => $search_value
         ]);
     }
 }
