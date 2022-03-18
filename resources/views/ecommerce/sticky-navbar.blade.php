@@ -20,7 +20,7 @@
             </a>
         </div>
         <div class="sticky-info">
-            <a href="cart.html" class="">
+            <a href="{{ route('cart') }}" class="">
                 <i class="icon-shopping-cart position-relative">
                     <span class="cart-count badge-circle">
                     {{ $cardBadge['data']['number_of_product'] }}

@@ -73,7 +73,7 @@
                         <nav class="main-nav w-100">
                             <ul class="menu">
                                 <li class="active">
-                                    <a href="demo7.html">Home</a>
+                                    <a href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('category') }}">Categories</a>

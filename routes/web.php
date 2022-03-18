@@ -43,6 +43,7 @@ Route::get('category', [HomeController::class, 'AllCategory'])->name('category')
 Route::get('sub-category/{id}', [HomeController::class, 'AllSubCategory'])->name('sub-category');
 Route::get('shop/{id?}', [HomeController::class, 'Shop'])->name('shop');
 Route::get('product-details/{id?}', [HomeController::class, 'productDetails'])->name('product-details');
+Route::get('cart', [HomeController::class, 'CartPage'])->name('cart');
 Route::get('/product-search/', [HomeController::class, 'productSearch'])->name('product-search');
 Route::get('/feature-wise/{feature}', [HomeController::class, 'FeatureWise'])->name('feature-wise');
 Route::get('/all-category-wise/{id?}', [HomeController::class, 'allCategoryWise'])->name('all-category-wise');

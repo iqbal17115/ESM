@@ -73,7 +73,7 @@
                             </figure>
                             <div class="product-details">
                                 <div class="category-list">
-                                    <a href="{{ route('product-details', ['id' => $new_product['id']]) }}" class="product-category">
+                                    <a href="{{ route('sub-category', ['id'=>$new_product['category']['id']]) }}" class="product-category">
                                     {{ $new_product['category']['name'] }}
                                     </a>
                                 </div>
@@ -159,7 +159,7 @@
                     }">
                     @foreach($categories as $category)
                         <div class="banner banner-image">
-                            <a href="demo7-product.html">
+                            <a href="{{ route('sub-category', ['id'=>$category->id]) }}">
                                 <img src="{{ asset('storage/photo/'.$category->image1) }}" id="CategoryImage" class="rounded" width="272" height="231"
                                     alt="banner">
                             </a>
@@ -193,7 +193,7 @@
                                 </figure>
                                 <div class="product-details">
                                     <div class="category-list">
-                                        <a href="#" class="product-category">
+                                        <a href="{{ route('sub-category', ['id'=>$new_product['category']['id']]) }}" class="product-category">
                                         {{ $new_product['category']['name'] }}
                                         </a>
                                     </div>

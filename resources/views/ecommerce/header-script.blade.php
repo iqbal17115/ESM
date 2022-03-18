@@ -1,5 +1,4 @@
 
-
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ URL::asset('porto/') }}/assets/css/bootstrap.min.css">
 

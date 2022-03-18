@@ -41,10 +41,14 @@ class HomeController extends Controller
         $this->addToCard = $addToCard;
         $this->addToCardService = $addToCardService;
     }
+    public function CartPage(){
+        return view('ecommerce.cart');
+    }
     public function Shop($id){
         $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereSubCategoryId($id)->whereIsActive(1)->get()->toArray();
         return view('ecommerce.shop',[
             'data'=>$data,
+            'brands' => Brand::get()
         ]);
     }
     public function AllSubCategory($id){
