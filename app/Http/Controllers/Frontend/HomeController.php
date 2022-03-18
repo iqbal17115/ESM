@@ -41,6 +41,9 @@ class HomeController extends Controller
         $this->addToCard = $addToCard;
         $this->addToCardService = $addToCardService;
     }
+    public function Checkout(){
+        return view('ecommerce.checkout');
+    }
     public function CartPage(){
         return view('ecommerce.cart');
     }
@@ -477,16 +480,6 @@ class HomeController extends Controller
     public function cartProductDelete(Request $request)
     {
         return $this->addToCardService::productDelete($request->get('product_id'));
-    }
-
-    public function checkOut()
-    {
-        $data['products'] = $this->addToCardService::cardTotalProductAndAmount();
-        return view('frontend.check-out', [
-            'data' => $data, 'shipping_charge' => ShippingCharge::whereIsActive(1)->get(),
-            //  'Districts' => District::orderBy('name', 'asc')->get(),
-            // 'Upazilas' => Upazila::all()
-        ]);
     }
 
     public function messages(Request $request)

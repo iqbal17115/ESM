@@ -44,6 +44,7 @@ Route::get('sub-category/{id}', [HomeController::class, 'AllSubCategory'])->name
 Route::get('shop/{id?}', [HomeController::class, 'Shop'])->name('shop');
 Route::get('product-details/{id?}', [HomeController::class, 'productDetails'])->name('product-details');
 Route::get('cart', [HomeController::class, 'CartPage'])->name('cart');
+Route::get('checkout', [HomeController::class, 'Checkout'])->name('checkout');
 Route::get('/product-search/', [HomeController::class, 'productSearch'])->name('product-search');
 Route::get('/feature-wise/{feature}', [HomeController::class, 'FeatureWise'])->name('feature-wise');
 Route::get('/all-category-wise/{id?}', [HomeController::class, 'allCategoryWise'])->name('all-category-wise');
@@ -57,6 +58,8 @@ Route::post('/ajax/add-to-card-product-delete', [HomeController::class, 'cartPro
 Route::get('/confirm-order', [HomeController::class, 'HomePage'])->name('confirm-order');
 Route::post('/confirm-order', [HomeController::class, 'confirmOrder'])->name('confirm-order');
 // End Frontend Route
+
+Route::Post('customer_sign_in', [LoginController::class, 'authenticate'])->name('customer_sign_in');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
