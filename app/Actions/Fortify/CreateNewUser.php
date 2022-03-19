@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Backend\Contact\Contact;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -22,19 +23,23 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'district_id' => ['required'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'mobile' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
      
         return tap(User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'address' => $input['address'],
+                'mobile' => $input['mobile'],
+                'type' => 'Customer',
+                'password' => Hash::make($input['password']),
         ]), function (User $user) use ($input) {
             // $user->assignRole('admin');
-                $this->createTeam($user);
                 $user->assignRole('customer');
                 $contact = Contact::whereMobile($user->mobile)->firstOrNew();
                 $contact->business_name = $input['business_name'];

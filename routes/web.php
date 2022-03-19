@@ -2,6 +2,7 @@
 use App\Http\Controllers\Backend\DatatableController;
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Livewire\Backend\Setting\CompanyInfo;
 use App\Http\Livewire\Backend\Setting\Currency;
 use App\Http\Livewire\Backend\Setting\Vat;
@@ -73,8 +74,9 @@ Route::get('about', [HomeController::class, 'About'])->name('about');
 Route::get('privacy-policy', [HomeController::class, 'PrivacyPolicy'])->name('privacy-policy');
 Route::get('terms-condition', [HomeController::class, 'TermsAndCondition'])->name('terms-condition');
 // End Frontend Route
-
+Route::get('/customer_login', [HomeController::class, 'CustomerLogin'])->name('customer_login');
 Route::Post('customer_sign_in', [LoginController::class, 'authenticate'])->name('customer_sign_in');
+Route::get('my-account', [HomeController::class, 'MyAccount'])->name('my-account');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

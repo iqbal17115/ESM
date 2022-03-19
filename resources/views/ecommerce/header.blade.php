@@ -41,7 +41,7 @@
                                     <li><a href="#">My Account</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
-                                    <li><a href="#">Log In</a></li>
+                                    <li><a href="{{ route('customer_login') }}">Log In</a></li>
                                 </ul>
                             </div><!-- End .header-menu -->
                         </div><!-- End .header-dropown -->
