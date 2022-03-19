@@ -64,14 +64,14 @@ class PaymentMethod extends Component
 
     public function paymentMethodEdit($id)
     {
-        $this->QueryUpdate             = PaymentMethodInfo::find($id);
-        $this->paymentMethod_id        = $this->QueryUpdate->id;
-        $this->code                    = $this->QueryUpdate->code;
-        $this->name                    = $this->QueryUpdate->name;
-        $this->account_holder_name     = $this->QueryUpdate->account_holder_name;
-        $this->account_no              = $this->QueryUpdate->account_no;
-        $this->opening_balance         = $this->QueryUpdate->opening_balance;
-        $this->is_active         = $this->QueryUpdate->is_active;
+        $QueryUpdate             = PaymentMethodInfo::find($id);
+        $this->paymentMethod_id    = $QueryUpdate->id;
+        $this->code                = $QueryUpdate->code;
+        $this->name                = $QueryUpdate->name;
+        $this->account_holder_name    = $QueryUpdate->account_holder_name;
+        $this->account_no          = $QueryUpdate->account_no;
+        $this->opening_balance     = $QueryUpdate->opening_balance;
+        $this->is_active     = $QueryUpdate->is_active;
         $this->emit('modal', 'PaymentMethodModal');
     }
 

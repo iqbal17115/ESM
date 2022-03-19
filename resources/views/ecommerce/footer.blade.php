@@ -26,15 +26,11 @@
                                 <h4 class="widget-title pb-1">Customer Service</h4>
 
                                 <ul class="links">
-                                    <li><a href="#">Help & FAQs</a></li>
-                                    <li><a href="#">Order Tracking</a></li>
                                     <li><a href="#">Shipping & Delivery</a></li>
                                     <li><a href="#">Orders History</a></li>
-                                    <li><a href="#">Advanced Search</a></li>
                                     <li><a href="dashboard.html">My Account</a></li>
-                                    <li><a href="#">Careers</a></li>
-                                    <li><a href="demo7-about.html">About Us</a></li>
-                                    <li><a href="#">Corporate Sales</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="#">Privacy</a></li>
                                 </ul>
                             </div><!-- End .widget -->

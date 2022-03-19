@@ -17,6 +17,8 @@ use App\Models\Backend\Contact\ContactCategory;
 use App\Models\Backend\Setting\PaymentMethod;
 use App\Models\Backend\Inventory\PurchaseInvoice;
 use App\Models\Backend\Inventory\SaleInvoice;
+use App\Models\FrontEnd\Order;
+use App\Models\FrontEnd\OrderDetail;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

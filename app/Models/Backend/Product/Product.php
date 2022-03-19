@@ -13,6 +13,8 @@ use App\Models\Backend\Product\SubCategory;
 use App\Models\Backend\Product\SubSubCategory;
 use App\Models\Backend\Product\ProductProperties;
 use App\Models\FrontEnd\AddToCard;
+use App\Models\FrontEnd\Order;
+use App\Models\FrontEnd\OrderDetail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -25,6 +25,7 @@
                     <li><a href="{{route('setting.vat')}}">Vat</a></li>
                     <li><a href="{{route('setting.warehouse')}}">Warehouse</a></li>
                     <li><a href="{{route('setting.payment-method')}}">Payment Method</a></li>
+                    <li><a href="{{route('setting.invoice-setting')}}">Invoice Setting</a></li>
                     </ul>
                 </li>
 
@@ -76,6 +77,22 @@
                     </ul>
                 </li>
                 <!-- End Inventory -->
+
+                <!-- Start Order -->
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-list-ul"></i>
+                        <span>Order</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('order.order-processing')}}">Processing Order</a></li>
+                        <li><a href="{{route('order.order-delivered')}}">Delivered Order</a></li>
+                        <li><a href="{{route('order.order-returned')}}">Returned Order</a></li>
+                        <li><a href="{{route('order.order-cancel')}}">Cancelled Order</a></li>
+                        <li><a href="{{route('order.order-list')}}">All Order</a></li>
+                    </ul>
+                </li>
+                <!-- End Order -->
             </ul>
         </div>
         <!-- Sidebar -->

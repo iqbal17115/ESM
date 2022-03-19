@@ -4,23 +4,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box" style="background-color: #F54748;">
-                <a href="{{url('/dashboard')}}" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <img src="{{URL::asset('public/assets/images/logo.svg')}}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{URL::asset('assets/images/logo-dark.png')}}" alt="" height="17">
-                    </span>
-                </a>
-
-                <a href="{{url('/dashboard')}}" class="logo logo-light">
-                    <span class="logo-sm">
-                        <img src="{{URL::asset('public/assets/images/logo.svg')}}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{URL::asset('assets/images/shomikaron-logo.png')}}" alt="" style="height: 40px;width:40px;">
-                    </span>
-                </a>
+            
             </div>
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
@@ -60,13 +44,13 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="" src="../../assets/images/flags/us.jpg" alt="Header Language" height="16">
+                    <img class="" src="@if ($companyInfo) {{ asset('storage/photo/' . $companyInfo->logo) }} @endif" alt="Header Language" style="height: 30px;" height="16">
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="../../assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
+                        <img src="../../assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12" style="height: 12px;"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
@@ -93,16 +77,16 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{URL::asset('public/assets/images/users/avatar-1.jpg')}}"
+                    <img class="rounded-circle header-profile-user" src="{{URL::asset('erina.jpg')}}"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ml-1">{{Auth::user()->name}}</span>
-                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                    <!-- <span class="d-none d-xl-inline-block ml-1">{{Auth::user()->name}}</span> -->
+                    <!-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> -->
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
                     <div class="dropdown-divider"></div>
-                    <a href="/user/profile">Profile</a>
-                    <a class="log-out-btn dropdown-item text-danger" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout </a>
+                    <a class="log-out-btn dropdown-item text-danger" href="/user/profile">Profile</a>
+                    <a class="log-out-btn dropdown-item text-danger" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

@@ -152,7 +152,7 @@ class Product extends Component
             // 'special_price' => 'required',
             'wholesale_price' => 'required',
             'purchase_price' => 'required',
-            // 'warehouse_id' => 'required',
+            'warehouse_id' => 'required',
             'in_stock' => 'required',
             // 'is_active' => 'required',
         ]);

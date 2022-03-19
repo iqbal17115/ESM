@@ -8,6 +8,7 @@ use App\Http\Livewire\Backend\Setting\Vat;
 use App\Http\Livewire\Backend\Setting\Warehouse;
 use App\Http\Livewire\Backend\Setting\PaymentMethod;
 use App\Http\Livewire\Backend\Setting\Slider;
+use App\Http\Livewire\Backend\Setting\InvoiceSetting;
 use App\Http\Livewire\Backend\Product\Unit;
 use App\Http\Livewire\Backend\Product\Brand;
 use App\Http\Livewire\Backend\Product\Category;
@@ -25,6 +26,15 @@ use App\Http\Livewire\Backend\Inventory\PurchaseList;
 use App\Http\Livewire\Backend\Inventory\Sale;
 use App\Http\Livewire\Backend\Inventory\SaleInvoice;
 use App\Http\Livewire\Backend\Inventory\SaleList;
+use App\Http\Livewire\Backend\Order\ProcessingOrderList;
+use App\Http\Livewire\Backend\Order\CancelOrderList;
+use App\Http\Livewire\Backend\Order\OrderInvoice;
+use App\Http\Livewire\Backend\Order\OrderList;
+use App\Http\Livewire\Backend\Order\ReturnedOrderList;
+use App\Http\Livewire\Backend\Order\PrintOrder;
+use App\Http\Livewire\Backend\Order\ShippedOrderList;
+use App\Http\Livewire\Backend\Order\DeliveredOrderList;
+use App\Http\Livewire\Backend\Order\OrderEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +67,11 @@ Route::post('/ajax/add-to-card-quantity-update', [HomeController::class, 'cartPr
 Route::post('/ajax/add-to-card-product-delete', [HomeController::class, 'cartProductDelete'])->name('ajax-add-to-card-product-delete');
 Route::get('/confirm-order', [HomeController::class, 'HomePage'])->name('confirm-order');
 Route::post('/confirm-order', [HomeController::class, 'confirmOrder'])->name('confirm-order');
+
+Route::get('contact', [HomeController::class, 'Contact'])->name('contact');
+Route::get('about', [HomeController::class, 'About'])->name('about');
+Route::get('privacy-policy', [HomeController::class, 'PrivacyPolicy'])->name('privacy-policy');
+Route::get('terms-condition', [HomeController::class, 'TermsAndCondition'])->name('terms-condition');
 // End Frontend Route
 
 Route::Post('customer_sign_in', [LoginController::class, 'authenticate'])->name('customer_sign_in');
@@ -68,6 +83,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['role:admin']], function () {
 
     // Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::group(['prefix' => 'order',  'as' => 'order.'], function () {
+        Route::get('order-list', OrderList::class)->name('order-list');
+        Route::get('order-processing', ProcessingOrderList::class)->name('order-processing');
+        Route::get('order-shipped', ShippedOrderList::class)->name('order-shipped');
+        Route::get('order-delivered', DeliveredOrderList::class)->name('order-delivered');
+        Route::get('order-returned', ReturnedOrderList::class)->name('order-returned');
+        Route::get('order-cancel', CancelOrderList::class)->name('order-cancel');
+        Route::get('print-order', PrintOrder::class)->name('print-order');
+        Route::get('order-edit/{id?}', OrderEdit::class)->name('order-edit');
+        Route::get('order-invoice/{id}', OrderInvoice::class)->name('order-invoice');
+    });
 
     Route::group(['prefix' => 'inventory', 'as' => 'inventory.'], function () {
         Route::get('purchase/{id?}', Purchase::class)->name('purchase');
@@ -103,9 +129,10 @@ Route::group(['middleware' => ['role:admin']], function () {
             Route::get('vat', Vat::class)->name('vat');
             Route::get('warehouse', Warehouse::class)->name('warehouse');
             Route::get('payment-method', PaymentMethod::class)->name('payment-method');
+            Route::get('invoice-setting', InvoiceSetting::class)->name('invoice-setting');
+
             // Route::get('branch', Branch::class)->name('branch');
             // Route::get('delivery-method', DeliveryMethod::class)->name('delivery-method');
-            // Route::get('invoice-setting', InvoiceSetting::class)->name('invoice-setting');
             // Route::get('coupon-code', CouponCode::class)->name('coupon-code');
             // Route::get('shipping-charge', ShippingCharge::class)->name('shipping-charge');
             // Route::get('warehouse', Warehouse::class)->name('warehouse');

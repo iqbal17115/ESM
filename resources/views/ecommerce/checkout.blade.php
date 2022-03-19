@@ -134,7 +134,7 @@
                                     <select name="division_id" class="form-control" required>
                                         <option value="">-- Select --</option>
                                         @foreach ($divisions as $division)
-                                          <option @if (Auth::user()->Contact->division_id==$division->id) selected @endif value="{{ $division->id }}">{{$division->prefecture_en}}</option>
+                                          <option @if (isset(Auth::user()->Contact) && Auth::user()->Contact->division_id==$division->id) selected @endif value="{{ $division->id }}">{{$division->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

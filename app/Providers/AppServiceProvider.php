@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Backend\Setting\CompanyInfo;
 use App\Models\Backend\Setting\Currency;
 use App\Models\Backend\Product\Category;
+use App\Models\Backend\Setting\InvoiceSetting;
 use App\Services\AddToCardService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('currencySymbol', Currency::whereIsActive(1)->first());
             $view->with('categories', Category::whereIsActive(1)->orderBy('id', 'desc')->get());
             $view->with('cardBadge', AddToCardService::cardTotalProductAndAmount());
+            $view->with('InvoiceSetting', InvoiceSetting::first());
         });
     }
 }

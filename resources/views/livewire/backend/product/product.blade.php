@@ -57,8 +57,9 @@
                                             <option value="{{ $SubCategory->id }}">{{ $SubCategory->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('sub_category_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                    @error('sub_category_id') <span class="error">{{ $message }}</span> @enderror
+
                                     <div class="form-group" wire:ignore>
                                         <label class="control-label">Sub-sub Category</label>
                                         <select class="form-control select2" wire:model.lazy="sub_sub_category_id"
@@ -68,8 +69,8 @@
                                             <option value="{{ $SubSubCategory->id }}">{{ $SubSubCategory->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('sub_sub_category_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                    @error('sub_sub_category_id') <span class="error">{{ $message }}</span> @enderror
                                     <div class="form-group" wire:ignore>
                                         <label class="control-label">Brand</label>
                                         <select class="form-control" wire:model.lazy="brand_id" id="select2-dropdown1">
@@ -78,8 +79,8 @@
                                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('brand_id') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                    @error('brand_id') <span class="error">{{ $message }}</span> @enderror
                                     <div class="form-group">
                                         <label for="regular_price">Regular Price</label>
                                         <input id="regular_price" type="number" step="any" class="form-control"
@@ -96,8 +97,8 @@
                                         <label for="wholesale_price">Wholesale Price</label>
                                         <input id="wholesale_price" type="number" step="any" class="form-control"
                                             wire:model.lazy="wholesale_price" placeholder="Wholesale Price">
-                                        @error('wholesale_price') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                    @error('wholesale_price') <span class="error">{{ $message }}</span> @enderror
                                     <div class="form-group">
                                         <label for="min_order_qty">Minimum Order Quantity</label>
                                         <input id="min_order_qty" type="number" step="any" class="form-control"

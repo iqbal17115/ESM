@@ -89,21 +89,21 @@ class Staff extends Component
 
     public function contactEdit($id)
     {
-        $this->QueryUpdate         = Contact::find($id);
-        $this->CustomerCategoryId  = $this->QueryUpdate->id;
-        $this->type                = $this->QueryUpdate->type;
-        $this->first_name                = $this->QueryUpdate->first_name;
-        $this->last_name                = $this->QueryUpdate->last_name;
-        $this->address             = $this->QueryUpdate->address;
-        $this->shipping_address    = $this->QueryUpdate->shipping_address;
-        $this->phone               = $this->QueryUpdate->phone;
-        $this->mobile              = $this->QueryUpdate->mobile;
-        $this->email               = $this->QueryUpdate->email;
-        $this->due_date            = $this->QueryUpdate->due_date;
-        $this->birthday            = $this->QueryUpdate->birthday;
-        $this->opening_balance     = $this->QueryUpdate->opening_balance;
-        $this->contact_category_id     = $this->QueryUpdate->contact_category_id;
-        $this->is_active              = $this->QueryUpdate->is_active;
+        $QueryUpdate         = Contact::find($id);
+        $this->CustomerCategoryId  = $QueryUpdate->id;
+        $this->type                = $QueryUpdate->type;
+        $this->first_name                = $QueryUpdate->first_name;
+        $this->last_name                = $QueryUpdate->last_name;
+        $this->address             = $QueryUpdate->address;
+        $this->shipping_address    = $QueryUpdate->shipping_address;
+        $this->phone               = $QueryUpdate->phone;
+        $this->mobile              = $QueryUpdate->mobile;
+        $this->email               = $QueryUpdate->email;
+        $this->due_date            = $QueryUpdate->due_date;
+        $this->birthday            = $QueryUpdate->birthday;
+        $this->opening_balance     = $QueryUpdate->opening_balance;
+        $this->contact_category_id     = $QueryUpdate->contact_category_id;
+        $this->is_active              = $QueryUpdate->is_active;
         $this->emit('modal', 'ContactModal');
     }
 

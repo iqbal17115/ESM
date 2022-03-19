@@ -6,7 +6,12 @@ use App\Models\Backend\Product\Product;
 use App\Models\Backend\Product\Brand;
 use App\Models\Backend\Product\Category;
 use App\Models\Backend\Setting\Slider;
+use App\Models\Backend\Contact\Contact;
 use App\Models\FrontEnd\AddToCard;
+use App\Models\FrontEnd\Order;
+use App\Models\FrontEnd\OrderDetail;
+use App\Models\FrontEnd\Notification;
+use App\Models\Division;
 use App\Services\AddToCardService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,7 +47,9 @@ class HomeController extends Controller
         $this->addToCardService = $addToCardService;
     }
     public function Checkout(){
-        return view('ecommerce.checkout');
+        return view('ecommerce.checkout', [
+            'divisions'=>Division::get()
+        ]);
     }
     public function CartPage(){
         return view('ecommerce.cart');
