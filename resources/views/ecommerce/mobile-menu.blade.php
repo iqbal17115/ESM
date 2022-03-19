@@ -32,8 +32,8 @@
 
             <ul class="mobile-menu">
                 <li><a href="login.html">My Account</a></li>
-                <li><a href="demo7-contact.html">Contact Us</a></li>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                <li><a href="{{ route('cart') }}">Cart</a></li>
                 <li><a href="login.html" class="login-link">Log In</a></li>
             </ul>
         </nav><!-- End .mobile-nav -->
