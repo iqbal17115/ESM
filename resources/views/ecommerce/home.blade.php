@@ -38,7 +38,7 @@
             <div class="container">
                 <section class="featured-products-section appear-animate" data-animation-name="fadeInUpShorter"
                     data-animation-delay="100">
-                    <h2 class="section-title text-center d-flex align-items-center">Featured Products
+                    <h2 class="section-title text-center d-flex align-items-center">JUST ARRIVED
                     </h2>
 
                     <div class="owl-carousel owl-theme dots-top dots-small" data-owl-options="{
@@ -173,58 +173,75 @@
                 </div><!-- End .container -->
             </div><!-- End .banners-section -->
 
+            @if(count($data['trending_products'])>0)
             <div class="arrival-products-section appear-animate" data-animation-name="fadeIn"
                 data-animation-delay="100">
                 <div class="container">
-                    <h2 class="section-title text-center d-flex align-items-center">JUST ARRIVED
+                    <h2 class="section-title text-center d-flex align-items-center">Trending Product
                     </h2>
 
                     <div class="row">
-                      @foreach($data['new_products'] as $NewProduct)
+                      @foreach($data['trending_products'] as $trending_product)
                         <div class="col-6 col-lg-3 col-md-4 col-xl-5col">
                             <div class="product-default left-details">
                                 <figure>
-                                    <a href="{{ route('product-details', ['id' => $NewProduct['id']]) }}">
-                                        <img src="{{ asset('storage/photo/' . $NewProduct['product_image_first']['image']) }}" id="ProductImage" alt="product"
+                                    <a href="{{ route('product-details', ['id' => $trending_product['id']]) }}">
+                                        <img src="{{ asset('storage/photo/' . $trending_product['product_image_first']['image']) }}" id="ProductImage" alt="product"
                                             width="300" height="300">
-                                        <img src="{{ asset('storage/photo/' . $NewProduct['product_image_first']['image']) }}" id="ProductImage" alt="product"
+                                        <img src="{{ asset('storage/photo/' . $trending_product['product_image_first']['image']) }}" id="ProductImage" alt="product"
                                             width="300" height="300">
                                     </a>
                                 </figure>
                                 <div class="product-details">
                                     <div class="category-list">
-                                        <a href="{{ route('sub-category', ['id'=>$new_product['category']['id']]) }}" class="product-category">
-                                        {{ $new_product['category']['name'] }}
+                                        <a href="{{ route('sub-category', ['id'=>$trending_product['category']['id']]) }}" class="product-category">
+                                        {{ $trending_product['category']['name'] }}
                                         </a>
                                     </div>
-                                    <h3 class="product-title"> <a href="{{ route('product-details', ['id' => $NewProduct['id']]) }}">
-                                       {{ $new_product['name'] }}
+                                    <h3 class="product-title"> <a href="{{ route('product-details', ['id' => $trending_product['id']]) }}">
+                                       {{ $trending_product['name'] }}
                                     </a> </h3>
                                     <div class="price-box">
                                     <span class="product-price">
-                                    @if ($new_product['special_price'])
+                                    @if ($trending_product['special_price'])
                                                     <span class="old-price">
                                                         @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
-                                                        {{ $new_product['regular_price'] }}
+                                                        {{ $trending_product['regular_price'] }}
                                                     </span>
                                                     <span class="product-price">
                                                         @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
-                                                        {{ $new_product['special_price'] }}
+                                                        {{ $trending_product['special_price'] }}
                                                     </span>
                                                 @else
                                                     <span class="product-price">
                                                         @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
-                                                        {{ $new_product['regular_price'] }}
+                                                        {{ $trending_product['regular_price'] }}
                                                     </span>
                                                 @endif
                                     </span>
                                     </div><!-- End .price-box -->
+                                    @php
+                                    $minimumQuantity = $trending_product['min_order_qty'];
+                                    $orderQuantity = 0;
+                                    if (isset($cardBadge['data']['products'][$trending_product['id']])) {
+                                        $minimumQuantity = $cardBadge['data']['products'][$trending_product['id']]['minimum_order_quantity'];
+                                        $orderQuantity = $cardBadge['data']['products'][$trending_product['id']]['quantity'];
+                                    }
+                                @endphp
+                                <input type="hidden" class="product_quantity"
+                                                    id="product_quantity_{{ $trending_product['id'] }}"
+                                                    data-minimum-quantity="{{ $minimumQuantity }}"
+                                                    value="{{ $orderQuantity ? $orderQuantity : $minimumQuantity }}">
+                                <div class="product-action">
+                                    <a href="javascript:void(0);" class="btn-icon btn-add-cart product-type-simple add-to-card buy-now buy-now-button" data-product-id="{{ $trending_product['id'] }}"><i
+                                            class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
+                                </div>
                                 </div><!-- End .product-details -->
                             </div>
                         </div>
@@ -234,6 +251,87 @@
                     <hr class="mt-1 mb-4">
                 </div>
             </div>
+            @endif
+
+            @if(count($data['best_sellings'])>0)
+            <div class="arrival-products-section appear-animate" data-animation-name="fadeIn"
+                data-animation-delay="100">
+                <div class="container">
+                    <h2 class="section-title text-center d-flex align-items-center">Best Selling Product
+                    </h2>
+
+                    <div class="row">
+                      @foreach($data['best_sellings'] as $best_selling)
+                        <div class="col-6 col-lg-3 col-md-4 col-xl-5col">
+                            <div class="product-default left-details">
+                                <figure>
+                                    <a href="{{ route('product-details', ['id' => $best_selling['id']]) }}">
+                                        <img src="{{ asset('storage/photo/' . $best_selling['product_image_first']['image']) }}" id="ProductImage" alt="product"
+                                            width="300" height="300">
+                                        <img src="{{ asset('storage/photo/' . $best_selling['product_image_first']['image']) }}" id="ProductImage" alt="product"
+                                            width="300" height="300">
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <div class="category-list">
+                                        <a href="{{ route('sub-category', ['id'=>$best_selling['category']['id']]) }}" class="product-category">
+                                        {{ $best_selling['category']['name'] }}
+                                        </a>
+                                    </div>
+                                    <h3 class="product-title"> <a href="{{ route('product-details', ['id' => $best_selling['id']]) }}">
+                                       {{ $best_selling['name'] }}
+                                    </a> </h3>
+                                    <div class="price-box">
+                                    <span class="product-price">
+                                    @if ($best_selling['special_price'])
+                                                    <span class="old-price">
+                                                        @if (isset($currencySymbol->symbol))
+                                                            <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
+                                                        @endif
+                                                        {{ $best_selling['regular_price'] }}
+                                                    </span>
+                                                    <span class="product-price">
+                                                        @if (isset($currencySymbol->symbol))
+                                                            <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
+                                                        @endif
+                                                        {{ $best_selling['special_price'] }}
+                                                    </span>
+                                                @else
+                                                    <span class="product-price">
+                                                        @if (isset($currencySymbol->symbol))
+                                                            <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
+                                                        @endif
+                                                        {{ $best_selling['regular_price'] }}
+                                                    </span>
+                                                @endif
+                                    </span>
+                                    </div><!-- End .price-box -->
+                                    @php
+                                    $minimumQuantity = $best_selling['min_order_qty'];
+                                    $orderQuantity = 0;
+                                    if (isset($cardBadge['data']['products'][$best_selling['id']])) {
+                                        $minimumQuantity = $cardBadge['data']['products'][$best_selling['id']]['minimum_order_quantity'];
+                                        $orderQuantity = $cardBadge['data']['products'][$best_selling['id']]['quantity'];
+                                    }
+                                @endphp
+                                <input type="hidden" class="product_quantity"
+                                                    id="product_quantity_{{ $best_selling['id'] }}"
+                                                    data-minimum-quantity="{{ $minimumQuantity }}"
+                                                    value="{{ $orderQuantity ? $orderQuantity : $minimumQuantity }}">
+                                <div class="product-action">
+                                    <a href="javascript:void(0);" class="btn-icon btn-add-cart product-type-simple add-to-card buy-now buy-now-button" data-product-id="{{ $best_selling['id'] }}"><i
+                                            class="icon-shopping-cart"></i><span>ADD TO CART</span></a>
+                                </div>
+                                </div><!-- End .product-details -->
+                            </div>
+                        </div>
+                      @endforeach
+                    </div>
+
+                    <hr class="mt-1 mb-4">
+                </div>
+            </div>
+            @endif
 
             <div class="container">
 

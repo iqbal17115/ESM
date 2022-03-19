@@ -40,14 +40,14 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
         ]), function (User $user) use ($input) {
             // $user->assignRole('admin');
-                $user->assignRole('customer');
+                $user->assignRole('admin');
                 $contact = Contact::whereMobile($user->mobile)->firstOrNew();
                 $contact->business_name = $input['business_name'];
                 $contact->first_name = $user->name;
                 $contact->address = $user->address;
                 $contact->shipping_address = $user->address;
                 $contact->user_id = $user->id;
-                $contact->type = 'Customer';
+                $contact->type = 'Admin';
                 $contact->mobile = $user->mobile;
                 // $contact->district_id = $input['district_id'];
                 $contact->created_by = $user->id;

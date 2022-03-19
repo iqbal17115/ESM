@@ -38,10 +38,14 @@
                         <div class="header-dropdown dropdown-expanded mr-3">
                             <div class="header-menu">
                                 <ul>
-                                    <li><a href="#">My Account</a></li>
+                                    @if (Auth::user())
+                                    <li><a href="{{ route('my-account') }}">My Account</a></li>
+                                    @endif
                                     <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
+                                    @if (!Auth::user())
                                     <li><a href="{{ route('customer_login') }}">Log In</a></li>
+                                    @endif
                                 </ul>
                             </div><!-- End .header-menu -->
                         </div><!-- End .header-dropown -->

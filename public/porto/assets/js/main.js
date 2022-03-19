@@ -38,7 +38,7 @@
 			name: '',
 			nameLink: '#', // 'product.html',
 			content: 'has been added to your cart.',
-			action: '<a href="cart.html" class="btn viewcart">View Cart</a><a href="checkout.html" class="btn btn-dark checkout">Checkout</a>',
+			action: '<a href="cart" class="btn viewcart">View Cart</a><a href="checkout" class="btn btn-dark checkout">Checkout</a>',
 			// option
 			delay: 4000, // milliseconds
 			space: 20,

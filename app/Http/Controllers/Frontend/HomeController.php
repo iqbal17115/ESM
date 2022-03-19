@@ -275,6 +275,7 @@ class HomeController extends Controller
         // $data['html'] = view('frontend.header-card-popup')->render();
         $data['products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereIsActive(1)->limit(6)->get()->toArray();
         $data['new_products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereFeatured('New Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
+        $data['trending_products'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereFeatured('Trending Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
         $data['best_sellings'] = $this->product->with(['ProductImageFirst', 'ProductImageLast', 'Category'])->whereFeatured('Best Selling Product')->whereIsActive(1)->limit(24)->orderBy('id', 'desc')->get()->toArray();
         $sliderImages = Slider::orderBy('position', 'desc')->whereIsActive(1)->get();
         return view('ecommerce.home', [

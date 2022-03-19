@@ -10,12 +10,12 @@
             </a>
         </div>
         <div class="sticky-info">
-            <a href="wishlist.html" class="">
+            <a href="#" class="">
                 <i class="icon-wishlist-2"></i>Wishlist
             </a>
         </div>
         <div class="sticky-info">
-            <a href="login.html" class="">
+            <a href="{{ route('customer_login') }}" class="">
                 <i class="icon-user-2"></i>Account
             </a>
         </div>
