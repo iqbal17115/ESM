@@ -55,11 +55,11 @@
 
 
 
-                        <section class="categories-section appear-animate mt-md-5" data-animation-name="fadeInUpShorter"
+                        <section class="categories-section appear-animate " data-animation-name="fadeInUpShorter"
                             data-animation-delay="15">
-                            {{-- <div class="heading d-flex align-items-center flex-column flex-lg-row border-0 mb-0">
-                                <h2 class="text-transform-none mb-0">Popular Departments</h2>
-                            </div> --}}
+                            <div class="heading d-flex align-items-center flex-column flex-lg-row border-0 mb-0">
+                                <h2 class="text-transform-none mb-0">Categories</h2>
+                            </div> 
                             <div class="owl-carousel owl-theme appear-animate" data-animation-name="fadeInUpShorter"
                                 data-animation-delay="200" data-owl-options="{
                                                 'dots': false,
@@ -82,7 +82,7 @@
                                                 }
                                             }">
                                 @foreach ($categories as $category)
-                                    <div class="banner banner-image font2">
+                                    <div class="banner banner-image font2 mt-md-5">
                                         <a href="{{ route('search-category-wise', ['id' => $category->id]) }}">
                                             <center>
                                                 <img

@@ -31,7 +31,6 @@
                         <li>
 
                             <a href="{{ route('search-category-wise',['id'=>$category->id]) }}" class="nolink">
-                            <img src="{{ asset('storage/photo/'.$category->image1) }}" class="rounded" style="height: 25px; width: 25px;"/>
                             {{$category->name}}
                             </a>
                             <ul>
