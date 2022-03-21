@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'Shomikaron E-Commerce'),
+    'env' => env('APP_ENV', 'SoftWorld E-Commerce'),
 
     /*
     |--------------------------------------------------------------------------

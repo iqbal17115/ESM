@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>E-Commerce | SHOMIKARON</title>
+        <title>E-Commerce | SoftWorld</title>
         <link rel="shortcut icon" href="https://cdn3.vectorstock.com/i/1000x1000/63/62/cafe-restaurant-logo-diner-or-cook-chef-vector-8516362.jpg">
 
         <!-- Fonts -->
