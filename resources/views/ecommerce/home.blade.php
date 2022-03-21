@@ -19,107 +19,40 @@
                                 {{-- col-xl-8--}}
 
                                 <div class="col-md-12 col-xl-12 col-lg-12 mb-xl-0 mb-2">
-                                    <div class="home-slider slide-animate owl-carousel owl-theme show-nav-hover dot-inside nav-big h-100 text-uppercase"
-                                        data-owl-options="{
-                                                            'loop': false,
-                                                            'nav' : false,
-                                                            'dots' : false
-                                                        }">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+      @php
+       $i=0;
+      @endphp
+    @foreach ($sliderImages as $sliderImage)
+    <div class="carousel-item @if($i==0) active @endif">
+    @php
+       $i=1;
+      @endphp
+      <img class="d-block w-100" src="{{ asset('storage/photo/'.$sliderImage->image) }}" id="SliderImage" alt="First slide">
+    </div>
+    @endforeach
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
-                                        @foreach ($sliderImages as $sliderImage)
-                                            <div class="home-slide home-slide1 banner">
-                                                <img class="slide-bg"
-                                                    src="{{ asset('storage/photo/' . $sliderImage->image) }}"
-                                                    alt="slider image" id="MainSliderImage"
-                                                    style="background-color: #c0e1f2;">
-                                                <div class="container d-flex align-items-center">
-                                                    <div class="banner-layer d-flex flex-column">
-                                                        <h2 class="text-transform-none appear-animate"
-                                                            data-animation-name="fadeInUpShorter"
-                                                            data-animation-delay="600">
-                                                            {{ $sliderImage->title }}
-                                                        </h2>
-                                                    </div>
-                                                    <!-- End .banner-layer -->
-                                                </div>
-                                            </div>
-                                            <!-- End .home-slide -->
-                                        @endforeach
-
-                                    </div>
                                     <!-- End .home-slider -->
-                                </div>
-                                {{-- <div class="col-md-12 col-xl-4 col-lg-12 d-sm-flex d-xl-block">
-
-                                    @foreach ($sliderImageDesc as $sliderImage)
-                                        <div class="banner banner1 mb-2 pr-sm-3 pr-0 pr-xl-0" id="SecondSliderImage">
-                                            <img class="slide-bg"
-                                                src="{{ asset('storage/photo/' . $sliderImage->image) }}"
-                                                alt="slider image" style="background-color: #d9e2e1;">
-                                            <div class="container d-flex align-items-center">
-                                                <div class="banner-layer d-flex flex-column pt-0">
-                                                    <h2 class="text-transform-none appear-animate"
-                                                        data-animation-name="fadeInUpShorter" data-animation-delay="600">
-                                                        {{ $sliderImage->title }}
-                                                    </h2>
-                                                </div>
-                                                <!-- End .banner-layer -->
-                                            </div>
-                                        </div>
-                                        <!-- End .home-slide -->
-                                    @endforeach
-
-                                </div> --}}
+                            
                             </div>
                         </section>
 
-                        {{-- <div class="info-boxes-slider owl-carousel owl-theme appear-animate"
-                            data-animation-name="fadeInUpShorter" data-animation-delay="200" data-owl-options="{
-                                        'dots': false,
-                                        'loop': false,
-                                        'responsive': {
-                                            '576': {
-                                                'items': 2
-                                            },
-                                            '992': {
-                                                'items': 2
-                                            },
-                                            '1200': {
-                                                'items': 3
-                                            }
-                                        }
-                                    }">
-                            <div class="info-box info-box-icon-left">
-                                <i class="icon-shipping mr-3 pr-2"></i>
-
-                                <div class="info-box-content">
-                                    <h4 class="pt-1">Free Shipping and Returns</h4>
-                                </div>
-                                <!-- End .info-box-content -->
-                            </div>
-                            <!-- End .info-box -->
-
-                            <div class="info-box info-box-icon-left">
-                                <i class="icon-money"></i>
-
-                                <div class="info-box-content">
-                                    <h4 class="ls-n-15">Money Back Guarantee</h4>
-                                </div>
-                                <!-- End .info-box-content -->
-                            </div>
-                            <!-- End .info-box -->
-
-                            <div class="info-box info-box-icon-left">
-                                <i class="icon-support mr-3 pr-2"></i>
-
-                                <div class="info-box-content">
-                                    <h4>Online Support 24/7</h4>
-                                </div>
-                                <!-- End .info-box-content -->
-                            </div>
-                            <!-- End .info-box -->
-                        </div> --}}
-                        <!-- End .info-boxes-slider -->
 
 
                         <section class="categories-section appear-animate mt-md-5" data-animation-name="fadeInUpShorter"

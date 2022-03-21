@@ -6,7 +6,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Sohan Ecom</title>
+    <title>
+    @if ($companyInfo)
+        {{ $companyInfo->name }}
+    @endif
+    </title>
 
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Porto - Bootstrap eCommerce Template">
