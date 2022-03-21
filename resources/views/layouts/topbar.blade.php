@@ -103,7 +103,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="@if($companyInfo) {{ asset('storage/photo/'.$companyInfo->logo) }} @endif"
+                    <img class="rounded-circle header-profile-user" src="{{URL::asset('erina.jpg')}}"
                         alt="Header Avatar">
                     {{-- <span class="d-none d-xl-inline-block ml-1">{{Auth::user()->name}}</span> --}}
                     <span class="d-none d-xl-inline-block ml-1">@if(isset($ProfileSettings)){{ $ProfileSettings->name }}@endif</span>
