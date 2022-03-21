@@ -1,0 +1,45 @@
+@extends('layouts.ecommerce')
+@section('content')
+<main class="main home">
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="sidebar-overlay"></div>
+            <div class="sidebar-toggle custom-sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
+
+            {{-- Start Aside --}}
+            @include('ecommerce.aside')
+            {{-- End Aside --}}
+
+            <div class="col-lg-9">
+                <div class="main-content">
+
+                    <div class="row products-group">
+                        @foreach ($subcategories as $subcategory)
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+                            <div class="product-default inner-quickview inner-icon">
+                                <figure>
+                                    <a href="{{route('sub-sub-category', ['id'=> $subcategory->id])}}">
+                                        <img src="{{ asset('storage/photo/' .$subcategory->image) }}" width="205"
+                                            height="205" alt="product">
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h3 class="product-title">
+                                        <a href="{{route('sub-sub-category', ['id'=> $subcategory->id])}}"> {{$subcategory->name}}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <!-- footer-area -->
+                    @include('ecommerce.footer')
+                    <!-- footer-area-end -->
+                    <!-- End .footer -->
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@endsection
