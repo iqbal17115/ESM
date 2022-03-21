@@ -14,15 +14,7 @@
     .main-footer{
         display: none;
     }
-    #MainSliderImage{
-        height: 350px;
-    }
-    #SecondSlider{
-        display: none;
-    }
-    .home-section-slider{
-        height: 400px;
-    }
+   
     #SecondSliderImage{
         display: none;
     }
