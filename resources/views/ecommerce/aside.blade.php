@@ -1,3 +1,5 @@
+<!-- <div class="sidebar-toggle custom-sidebar-toggle"><i class="fas fa-sliders-h"></i></div> -->
+
 <aside class="col-lg-3 order-lg-first sidebar-home mobile-sidebar">
     <div class="sidebar-wrapper">
         <div class="side-menu-wrapper text-uppercase border-0 font2">
