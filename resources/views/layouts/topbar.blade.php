@@ -88,7 +88,7 @@
                     <!-- item-->
                     @foreach ($notifications as $notification)
                     <a href="{{ route('order.order-list',['id'=>$notification->order_id]) }}" class="dropdown-item notify-item">
-                        <div>{{$notification->Contact->business_name}}</div>
+                        <div>{{$notification->Contact->first_name}} {{$notification->Contact->mobile}}</div>
                     </a>
                     @endforeach
 
