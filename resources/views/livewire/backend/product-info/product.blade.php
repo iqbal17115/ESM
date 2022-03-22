@@ -58,8 +58,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @error('sub_category_id') <span class="error">{{ $message }}</span> @enderror
-                                    {{-- <div class="form-group">
+                                    <!-- @error('sub_category_id') <span class="error">{{ $message }}</span> @enderror -->
+                                     <div class="form-group">
                                         <label class="control-label">Sub-sub Category</label>
                                         <select class="form-control select2" wire:model.lazy="sub_sub_category_id"
                                             id="select2-dropdown">
@@ -69,7 +69,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @error('sub_sub_category_id') <span class="error">{{ $message }}</span> @enderror --}}
+                                    <!-- @error('sub_sub_category_id') <span class="error">{{ $message }}</span> @enderror --}} -->
                                     <div class="form-group" wire:ignore>
                                         <label class="control-label">Brand</label>
                                         <select class="form-control" wire:model.lazy="brand_id" id="select2-dropdown1">

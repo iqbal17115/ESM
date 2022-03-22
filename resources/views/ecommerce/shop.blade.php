@@ -163,19 +163,13 @@
                                         </span>
                                         @endif
                                     </div>
-                                    @if($product['special_price'])
-                                      <div class="top-left" style="width: 70px;">
-                                        -{{ intval((($product['regular_price'] - $product['special_price']) * 100)/$product['regular_price']) }}% OFF
-                                      </div>
-                                    @endif
+                                 
                                     <!-- End .price-box -->
                                 </div>
                                 <div class="product-action mt-1">
-                                    <center>
                                     <a href="javascript:void(0);" class="btn-icon btn-add-cart product-type-simple product-type-simple-mobile add-to-card buy-now buy-now-button" data-product-id="{{ $product['id'] }}" style="background-color: #eae5ef;">
                                            <i class="icon-shopping-cart"></i><span>ADD TO CART</span>
                                     </a>
-                                    </center>
                                 </div>
                                 <!-- End .product-details -->
                             </div>
