@@ -91,7 +91,7 @@
                                                 @endif
                                                  width="374"
                                                 height="200" alt="banner" id="CategoryImage"
-                                                style="border-radius: 50%;">
+                                                style="border-radius: 5%;">
                                             </center>
                                         </a>
                                         <div class="">
@@ -173,10 +173,10 @@
                                                     id="product_quantity_{{ $FeaturedProduct['id'] }}"
                                                     data-minimum-quantity="{{ $minimumQuantity }}"
                                                     value="{{ $orderQuantity ? $orderQuantity : $minimumQuantity }}">
-                                                <a href="javascript:void(0)"
+                                                <!-- <a href="javascript:void(0)"
                                                     data-product-id="{{ $FeaturedProduct['id'] }}"
                                                     class="btn-icon btn-add-cart product-type-simple add-to-card buy-now buy-now-button cartModal"><i
-                                                        class="icon-shopping-cart"></i></a>
+                                                        class="icon-shopping-cart"></i></a> -->
                                             </div>
                                         </figure>
                                         <div class="product-details">
@@ -218,20 +218,14 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            @if($FeaturedProduct['special_price'])
-                                                    <div class="top-left" style="width: 83px;">
-                                                        -{{ intval((($FeaturedProduct['regular_price'] - $FeaturedProduct['special_price']) * 100)/$FeaturedProduct['regular_price']) }}% OFF
-                                                    </div>
-                                            @endif
+                                            
                                             <!-- End .price-box -->
                                         </div>
-                                        <div class="product-action mt-1">
-                                            <center>
-                                            <a href="javascript:void(0);" class="btn-icon btn-add-cart product-type-simple product-type-simple-mobile add-to-card buy-now buy-now-button" data-product-id="{{ $FeaturedProduct['id'] }}" style="background-color: #346aff; color: white; font-weight: bold;">
-                                                   <i class="icon-shopping-cart"></i><span>ADD TO CART</span>
-                                            </a>
-                                            </center>
-                                        </div>
+                                        <div class="product-action">
+                                    <a href="javascript:void(0);" class="btn-icon btn-add-cart product-type-simple product-type-simple-mobile add-to-card buy-now buy-now-button" data-product-id="{{ $FeaturedProduct['id'] }}" style="background-color: #eae5ef;">
+                                           <i class="icon-shopping-cart"></i><span>ADD TO CART</span>
+                                    </a>
+                                </div>
                                         <!-- End .product-details -->
                                     </div>
                                 @endforeach

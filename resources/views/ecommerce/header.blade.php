@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="header-top">
+    <div class="header-top" style="background: #b4f3f9;">
         <div class="container-fluid">
             <div class="header-left top-notice d-none d-md-flex p-0 font2">
                 <h5 class="d-inline-block text-dark mb-0 ls-0">
