@@ -94,7 +94,7 @@
         </a>
     </div>
     <div class="sticky-info">
-        <a href="{{ route('search-category-wise') }}" class="">
+        <a href="{{ route('category') }}" class="">
             <i class="icon-bars"></i>Categories
         </a>
     </div>

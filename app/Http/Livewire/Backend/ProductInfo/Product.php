@@ -37,7 +37,7 @@ class Product extends Component
     public $long_description;
     public $key_word;
     public $regular_price;
-    public $special_price;
+    public $special_price=0;
     public $wholesale_price = 0;
     public $purchase_price = 0;
     public $discount;
@@ -123,7 +123,11 @@ class Product extends Component
         $StockManager = StockManager::whereProductId($id)->first();
         if ($StockManager) {
             $this->stock_in_opening = $StockManager->stock_in_opening;
+            if($this->warehouse_id){
             $this->warehouse_id = $StockManager->warehouse_id;
+            }else{
+            $this->warehouse_id = 1;
+            }
         }
 
         // Product Code
@@ -158,8 +162,8 @@ class Product extends Component
             // 'brand_id' => 'required',
             'regular_price' => 'required',
             // 'special_price' => 'required',
-            'wholesale_price' => 'required',
-            'purchase_price' => 'required',
+            // 'wholesale_price' => 'required',
+            // 'purchase_price' => 'required',
             // 'warehouse_id' => 'required',
             'in_stock' => 'required',
             // 'is_active' => 'required',
@@ -294,7 +298,11 @@ class Product extends Component
                 $StockManager = new StockManager();
                 $StockManager->date = Carbon::now();
                 $StockManager->product_id = $Query->id;
+               if($this->warehouse_id){
                 $StockManager->warehouse_id = $this->warehouse_id;
+               }else{
+                $StockManager->warehouse_id = 1;
+               }
                 $StockManager->created_by = Auth::user()->id;
             }
             $StockManager->stock_in_opening = $this->stock_in_opening;
@@ -306,6 +314,7 @@ class Product extends Component
         // dd("OK");
         if (!$this->ProductId) {
             $this->reset();
+            $this->special_price=0;
             $this->code = 'P' . floor(time() - 999999999);
 
             $this->emit('success', [

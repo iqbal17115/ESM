@@ -3,7 +3,7 @@
     <main class="main home">
         <div class="container-fluid p-0">
             <div class="row m-0">
-                <div class="sidebar-overlay"></div>
+                <!-- <div class="sidebar-overlay"></div> -->
 
                 {{-- Start Aside --}}
                 @include('ecommerce.aside')

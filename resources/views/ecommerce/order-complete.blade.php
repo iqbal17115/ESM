@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <a href="{{ route('all-category-wise') }}" class="icon-box">
+                    <a href="{{ route('search-category-wise') }}" class="icon-box">
                         <i class="fa fa-cart-arrow-down"></i>
                         <h5 class="porto-sicon-title">Products</h5>
                         <i class="fa fa-cart-arrow-down"></i>
