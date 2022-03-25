@@ -3,8 +3,7 @@
 <main class="main home">
     <div class="container-fluid p-0">
         <div class="row m-0">
-            <div class="sidebar-overlay"></div>
-            <div class="sidebar-toggle custom-sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
+            <!-- <div class="sidebar-overlay"></div> -->
 
             {{-- Start Aside --}}
             @include('ecommerce.aside')
@@ -18,14 +17,14 @@
                         <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
                             <div class="product-default inner-quickview inner-icon">
                                 <figure>
-                                    <a href="{{route('sub-sub-category', ['id'=> $subsubcategory->id])}}">
+                                    <a href="{{route('search-subSubCategory-wise', ['id'=> $subsubcategory->id])}}">
                                         <img src="{{ asset('storage/photo/' .$subsubcategory->image) }}" width="205"
                                             height="205" alt="product">
                                     </a>
                                 </figure>
                                 <div class="product-details">
                                     <h3 class="product-title">
-                                        <a href="{{route('sub-sub-category', ['id'=> $subsubcategory->id])}}"> {{$subsubcategory->name}}</a>
+                                        <a href="{{route('search-subSubCategory-wise', ['id'=> $subsubcategory->id])}}"> {{$subsubcategory->name}}</a>
                                     </h3>
                                 </div>
                             </div>

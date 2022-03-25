@@ -151,7 +151,7 @@
                                     <label class="order-comments">Order notes (optional)</label>
                                     <textarea class="form-control"
                                         placeholder="Notes about your order, e.g. special notes for delivery."
-                                        required></textarea>
+                                        ></textarea>
                                 </div>
                             </form>
                         </li>

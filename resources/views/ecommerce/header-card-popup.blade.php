@@ -3,7 +3,7 @@
             <div class="product"  id="li_row_{{ $productId }}">
                 <div class="product-details">
                     <h4 class="product-title">
-                        <a href="product.html">
+                        <a href="{{ route('product-details', ['id' => $productId]) }}">
                             @if (strlen($product['Info']['product_name']) > 20)
                                 {{ substr($product['Info']['product_name'], 0, 19) . '...' }}
                             @else
@@ -19,7 +19,7 @@
                 <!-- End .product-details -->
 
                 <figure class="product-image-container">
-                    <a href="#" class="product-image">
+                    <a href="{{ route('product-details', ['id' => $productId]) }}" class="product-image">
                         <img @if ($product['Info']['image']) src="{{ asset('storage/photo/' . $product['Info']['image']) }}" @endif alt="product" width="80" height="80">
                     </a>
 

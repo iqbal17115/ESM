@@ -95,12 +95,22 @@ class AddToCardService extends Controller
                             $productCard->unit_price = $product['wholesale_price'];
                             $productCard->total_price = ($productCard->quantity * $product['wholesale_price']);
                         } else {
-                            $productCard->unit_price = $product['special_price'];
-                            $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                            if($product['special_price']){
+                                $productCard->unit_price = $product['special_price'];
+                                $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                            }else{
+                                $productCard->unit_price = $product['regular_price'];
+                                $productCard->total_price = ($productCard->quantity * $product['regular_price']);
+                            }
                         }
                     } else {
-                        $productCard->unit_price = $product['special_price'];
-                        $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                        if($product['special_price']){
+                            $productCard->unit_price = $product['special_price'];
+                            $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                        }else{
+                            $productCard->unit_price = $product['regular_price'];
+                            $productCard->total_price = ($productCard->quantity * $product['regular_price']);
+                        }
                     }
                 }
             } else {
@@ -114,12 +124,22 @@ class AddToCardService extends Controller
                         $productCard->unit_price = $product['wholesale_price'];
                         $productCard->total_price = ($productCard->quantity * $product['wholesale_price']);
                     } else {
-                        $productCard->unit_price = $product['special_price'];
-                        $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                        if($product['special_price']){
+                            $productCard->unit_price = $product['special_price'];
+                            $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                        }else{
+                            $productCard->unit_price = $product['regular_price'];
+                            $productCard->total_price = ($productCard->quantity * $product['regular_price']);
+                        }
                     }
                 } else {
-                    $productCard->unit_price = $product['special_price'];
-                    $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                    if($product['special_price']){
+                        $productCard->unit_price = $product['special_price'];
+                        $productCard->total_price = ($productCard->quantity * $product['special_price']);
+                    }else{
+                        $productCard->unit_price = $product['regular_price'];
+                        $productCard->total_price = ($productCard->quantity * $product['regular_price']);
+                    }
                 }
             }
 
