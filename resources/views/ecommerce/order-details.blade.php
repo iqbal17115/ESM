@@ -336,7 +336,7 @@
                                             @if($currencySymbol)
                                             {{$currencySymbol->symbol}}
                                             @endif
-                                            {{$orderDetail->unit_price}}
+                                            {{intval($orderDetail->unit_price)}}
                                             @php
                                             $sum += ($orderDetail->quantity* $orderDetail->unit_price);
                                             @endphp
@@ -345,7 +345,7 @@
                                             @if($currencySymbol)
                                             {{$currencySymbol->symbol}}
                                             @endif
-                                            {{$orderDetail->quantity * $orderDetail->unit_price}}
+                                            {{intval($orderDetail->quantity * $orderDetail->unit_price)}}
                                         </td>
                                     </tr>
                                     @endforeach

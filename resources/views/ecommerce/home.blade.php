@@ -200,20 +200,20 @@
                                                         @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
-                                                        {{ $FeaturedProduct['regular_price'] }}
+                                                        {{ intval($FeaturedProduct['regular_price']) }}
                                                     </span>
                                                     <span class="product-price">
                                                         @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
-                                                        {{ $FeaturedProduct['special_price'] }}
+                                                        {{ intval($FeaturedProduct['special_price']) }}
                                                     </span>
                                                 @else
                                                     <span class="product-price">
                                                         @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
-                                                        {{ $FeaturedProduct['regular_price'] }}
+                                                        {{ intval($FeaturedProduct['regular_price']) }}
                                                     </span>
                                                 @endif
                                             </div>
