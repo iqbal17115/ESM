@@ -196,10 +196,11 @@
 
                                             <div class="price-box">
                                                 @if ($FeaturedProduct['special_price'])
-                                                    <span class="old-price">
-                                                        @if (isset($currencySymbol->symbol))
+                                                       @if (isset($currencySymbol->symbol))
                                                             <span style="font-size: 14px;">{{ $currencySymbol->symbol }}</span>
                                                         @endif
+                                                    <span class="old-price">
+                                                        
                                                         {{ intval($FeaturedProduct['regular_price']) }}
                                                     </span>
                                                     <span class="product-price">
